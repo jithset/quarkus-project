@@ -1,0 +1,22 @@
+quarkus:
+  http:
+    cors:
+      ~: true
+      methods: GET,PUT,POST,DELETE
+
+  datasource:
+    db-kind: postgresql
+    username: quarkus
+    password: quarkus
+    jdbc:
+      url: "jdbc:postgresql://localhost:8005/hb_reactive"
+    # Reactive config
+    reactive:
+      url: "vertx-reactive:postgresql://localhost:8005/hb_reactive"
+
+  # drop and create the database at startup (use `update` to only update the schema)
+  hibernate-orm:
+    database:
+      generation: drop-and-create
+    log:
+      sql: true
