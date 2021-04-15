@@ -1,0 +1,9 @@
+version: "3"
+services: 
+    database:
+        image: "postgres:11.2"
+        container_name: "super-database"
+        ports: 
+            - "8090:5432"
+        volumes: 
+            - ./db-init/initial-db.sql:/docker-entrypoint-initdb.d/init.sql

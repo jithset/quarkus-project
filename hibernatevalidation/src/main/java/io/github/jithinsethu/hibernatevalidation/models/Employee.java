@@ -1,0 +1,26 @@
+package io.github.jithinsethu.hibernatevalidation.models;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
+@NoArgsConstructor
+@ToString
+public class Employee {
+
+    @Id
+    @GeneratedValue
+    @Getter @Setter
+    private Long id;
+
+
+    @Getter @Setter
+    private String name;
+
+}
