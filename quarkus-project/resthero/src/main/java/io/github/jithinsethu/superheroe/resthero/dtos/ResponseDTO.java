@@ -17,6 +17,11 @@ public class ResponseDTO {
         this.data = data;
     }
 
+    public ResponseDTO(String message, Boolean status) {
+        this.message = message;
+        this.status = status;
+    }
+
     public String getMessage() {
         return message;
     }
