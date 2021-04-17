@@ -1,7 +1,6 @@
 package io.github.jithinsethu.superheroe.resthero;
 
 import io.github.jithinsethu.superheroe.resthero.dtos.ResponseDTO;
-import io.smallrye.mutiny.Multi;
 import io.smallrye.mutiny.Uni;
 import org.jboss.logging.Logger;
 import org.jboss.resteasy.reactive.RestPath;
@@ -61,7 +60,7 @@ public class HeroResource {
     @DELETE
     @Path("/{id}")
     public Uni<Response> deleteHero(@RestPath Long id) {
-        return service.deleteHero(id).map(t -> t? Response.ok().entity(new ResponseDTO("deleted", true)).build():
+        return service.deleteHero(id).map(t -> t ? Response.ok().entity(new ResponseDTO("deleted", true)).build() :
                 Response.ok().status(Response.Status.NOT_FOUND).entity(new ResponseDTO("failed to delete", false)).build());
     }
 }
