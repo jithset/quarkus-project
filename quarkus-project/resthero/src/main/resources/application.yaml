@@ -8,9 +8,9 @@ quarkus:
     password: superman
     reactive:
       url: postgresql://localhost:8090/heroes_database
-    max-size: 8
-    min-size: 2
 
   hibernate-orm:
     database:
       generation: drop-and-create
+    log:
+      sql: true
