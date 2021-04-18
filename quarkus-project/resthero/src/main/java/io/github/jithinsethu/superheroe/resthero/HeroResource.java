@@ -22,6 +22,12 @@ public class HeroResource {
     HeroService service;
 
     @GET
+    @Path("/hello")
+    public Uni<String> hello() {
+        return Uni.createFrom().item("hello");
+    }
+
+    @GET
     @Path("/random")
     public Uni<Response> randomHeroes() {
         logger.debug("Random heroes");
@@ -39,14 +45,14 @@ public class HeroResource {
     @POST
     public Uni<Response> create(@Valid Hero hero) {
         return service.persistHero(hero).map(t -> new ResponseDTO("success", true, t))
-                .onItem().transform(t -> Response.ok().entity(t).build());
+                .onItem().transform(t -> Response.ok().status(Response.Status.CREATED).entity(t).build());
 
     }
 
     @GET
     @Path("/{id}")
     public Uni<Response> getHero(@RestPath Long id) {
-        return service.findHeroById(id).onItem().ifNull().failWith(new WebApplicationException("Not found", 200))
+        return service.findHeroById(id).onItem().ifNull().failWith(new WebApplicationException("Not found", Response.Status.NOT_FOUND))
                 .onItem().ifNotNull().transform(t -> new ResponseDTO("success", true, t))
                 .onItem().transform(t -> Response.ok().entity(t).build());
     }
