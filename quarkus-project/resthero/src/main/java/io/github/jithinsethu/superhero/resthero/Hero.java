@@ -1,4 +1,4 @@
-package io.github.jithinsethu.superheroe.resthero;
+package io.github.jithinsethu.superhero.resthero;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -7,7 +7,6 @@ import javax.validation.constraints.Size;
 
 @Entity
 public class Hero {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Long id;

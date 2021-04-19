@@ -1,4 +1,4 @@
-package io.github.jithinsethu.superheroe.utils;
+package io.github.jithinsethu.superhero.utils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,16 +14,17 @@ public class ConverterUtils {
         } else {
             list = Arrays.asList((Object[])obj);
         }
-        /*if (obj.getClass().isArray()) {
-            list = Arrays.asList((Object[])obj);
-        } else if (obj instanceof Collection) {
-            list = new ArrayList<>((Collection<?>)obj);
-        }*/
         return list;
     }
 
     public static boolean isCollection(Object obj) {
         return obj.getClass().isArray() || obj instanceof Collection;
+    }
+
+    public static String jdbcToReactive(String jdbcUrl) {
+        //jdbc:postgresql://localhost:49200/heroes_database?loggerLevel=OFF
+        // postgresql://localhost:8090/heroes_database
+        return jdbcUrl.replace("jdbc:", "");
     }
 
 }

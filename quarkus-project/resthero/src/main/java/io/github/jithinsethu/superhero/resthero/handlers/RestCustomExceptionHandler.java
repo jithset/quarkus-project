@@ -1,6 +1,7 @@
-package io.github.jithinsethu.superheroe.resthero.handlers;
+package io.github.jithinsethu.superhero.resthero.handlers;
 
-import io.github.jithinsethu.superheroe.resthero.dtos.ResponseDTO;
+import io.github.jithinsethu.superhero.utils.dtos.ResponseDTO;
+import org.jboss.logging.Logger;
 
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
@@ -9,8 +10,13 @@ import javax.ws.rs.ext.Provider;
 
 @Provider
 public class RestCustomExceptionHandler implements ExceptionMapper<Exception> {
+
+    Logger logger = Logger.getLogger(RestCustomExceptionHandler.class.getName());
+
     @Override
     public Response toResponse(Exception e) {
+        logger.error(e.getMessage());
+        e.printStackTrace();
         int code = 500;
         ResponseDTO dto = new ResponseDTO();
         dto.status = false;

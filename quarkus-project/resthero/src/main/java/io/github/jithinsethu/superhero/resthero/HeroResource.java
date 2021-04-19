@@ -1,7 +1,12 @@
-package io.github.jithinsethu.superheroe.resthero;
+package io.github.jithinsethu.superhero.resthero;
 
-import io.github.jithinsethu.superheroe.resthero.dtos.ResponseDTO;
+import io.github.jithinsethu.superhero.utils.dtos.ResponseDTO;
 import io.smallrye.mutiny.Uni;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
+import org.eclipse.microprofile.openapi.annotations.media.Content;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.jboss.logging.Logger;
 import org.jboss.resteasy.reactive.RestPath;
 
@@ -11,9 +16,11 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+
 @Path("/api/heroes")
-@Produces(MediaType.APPLICATION_JSON)
-@Consumes(MediaType.APPLICATION_JSON)
+@Produces(APPLICATION_JSON)
+@Consumes(APPLICATION_JSON)
 public class HeroResource {
 
     Logger logger = Logger.getLogger(HeroResource.class.getName());
@@ -27,6 +34,9 @@ public class HeroResource {
         return Uni.createFrom().item("hello");
     }
 
+    @Operation(summary = "Returns a random hero")
+    @APIResponse(responseCode = "200", content = @Content(mediaType = APPLICATION_JSON,
+            schema = @Schema(implementation = Hero.class, required = true) ))
     @GET
     @Path("/random")
     public Uni<Response> randomHeroes() {
@@ -35,6 +45,11 @@ public class HeroResource {
                 .onItem().transform(t -> Response.ok().entity(t).build());
     }
 
+
+    @Operation(summary = "Returns all the heroes from the database")
+    @APIResponse(responseCode = "200", content = @Content(mediaType = APPLICATION_JSON,
+            schema = @Schema(implementation = ResponseDTO.class, type = SchemaType.ARRAY)))
+    @APIResponse(responseCode = "204", description = "No heroes")
     @GET
     public Uni<Response> allHeroes() {
         return service.findAllHeroes().map(t -> new ResponseDTO("success", true, t))
@@ -49,6 +64,9 @@ public class HeroResource {
 
     }
 
+    @Operation(summary = "Returns a hero for a given identifier")
+    @APIResponse(responseCode = "200", content = @Content(mediaType = APPLICATION_JSON, schema = @Schema(implementation = Hero.class)))
+    @APIResponse(responseCode = "204", description = "The hero is not found for a given identifier")
     @GET
     @Path("/{id}")
     public Uni<Response> getHero(@RestPath Long id) {

@@ -1,4 +1,4 @@
-package io.github.jithinsethu.superheroe.resthero.dtos;
+package io.github.jithinsethu.superhero.utils.dtos;
 
 public class ResponseDTO {
 

@@ -1,19 +1,19 @@
-package io.github.jithinsethu.superheroe.resthero;
+package io.github.jithinsethu.superhero.resthero;
 
 import io.quarkus.hibernate.reactive.panache.Panache;
-import io.quarkus.hibernate.reactive.panache.PanacheRepository;
-import io.smallrye.mutiny.Multi;
 import io.smallrye.mutiny.Uni;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 @ApplicationScoped
 public class HeroService {
+    @ConfigProperty(name = "level.multiplier", defaultValue="1")
+    int levelMultiplier;
 
     @Inject
     HeroRepository repository;
@@ -43,7 +43,7 @@ public class HeroService {
             repository.findById(hero.id).map(h -> {
                 h.name = hero.name;
                 h.otherName = hero.otherName;
-                h.level = hero.level;
+                h.level = hero.level * levelMultiplier;
                 h.picture = hero.picture;
                 h.powers = hero.powers;
                 return h;

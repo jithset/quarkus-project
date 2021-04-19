@@ -1,4 +1,4 @@
-package io.github.jithinsethu.superheroe.resthero;
+package io.github.jithinsethu.superhero.resthero;
 
 import io.quarkus.hibernate.reactive.panache.PanacheRepository;
 

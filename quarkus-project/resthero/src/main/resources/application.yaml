@@ -1,6 +1,7 @@
 quarkus:
   http:
-    port: 8080
+    port: 8083
+    test-port: 8084
 
   datasource:
     db-kind: postgresql
@@ -14,3 +15,28 @@ quarkus:
       generation: drop-and-create
     log:
       sql: true
+
+  log:
+    console:
+      enable: true
+      format: "%d{HH:mm:ss} %-5p [%c{2.}] (%t) %s%e%n"
+      level: DEBUG
+      color: true
+
+# Business configuration
+heroes:
+  level:
+    multiplier: 3
+
+
+"%test":
+  quarkus:
+    datasource:
+      db-kind: postgresql
+      reactive:
+        url: postgresql://localhost:8098/heroes_database
+      username: superman
+      password: superman
+    hibernate-orm:
+      database:
+        generation: drop-and-create
