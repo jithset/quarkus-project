@@ -19,7 +19,7 @@ quarkus:
 #  log:
 #    console:
 #      enable: true
-#      format: "%d{HH:mm:ss} %-5p [%c{2.}] (%t) %s%e%n"
+#      format: "%d{HH:mm:ss} %-5ppom [%c{2.}] (%t) %s%e%n"
 #      level: DEBUG
 #      color: true
 

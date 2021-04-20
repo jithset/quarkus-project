@@ -1,4 +1,4 @@
-package io.github.jithinsethu.superhero.resthero.handlers;
+package io.github.jithinsethu.superhero.utils.handlers;
 
 import io.github.jithinsethu.superhero.utils.dtos.ResponseDTO;
 import org.jboss.logging.Logger;
