@@ -1,4 +1,4 @@
-package io.github.jithinsethu.superhero;
+package io.github.jithinsethu.superhero.resthero;
 
 import org.eclipse.microprofile.openapi.annotations.ExternalDocumentation;
 import org.eclipse.microprofile.openapi.annotations.OpenAPIDefinition;

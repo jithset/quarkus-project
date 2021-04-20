@@ -16,12 +16,12 @@ quarkus:
     log:
       sql: true
 
-  log:
-    console:
-      enable: true
-      format: "%d{HH:mm:ss} %-5p [%c{2.}] (%t) %s%e%n"
-      level: DEBUG
-      color: true
+#  log:
+#    console:
+#      enable: true
+#      format: "%d{HH:mm:ss} %-5p [%c{2.}] (%t) %s%e%n"
+#      level: DEBUG
+#      color: true
 
 # Business configuration
 heroes:
