@@ -1,0 +1,14 @@
+
+# OIDC Configuration
+quarkus:
+  oidc:
+    auth-server-url: "http://localhost:8180/auth/realms/quarkus"
+    client-id: backend-service
+    credentials:
+      secret: secret
+    tls:
+      verification: none
+
+  keycloak:
+    policy-enforcer:
+      enable: true
