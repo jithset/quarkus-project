@@ -1,0 +1,22 @@
+quarkus:
+  http:
+    port: 8085
+    cors:
+      ~ : true
+      methods: "GET,PUT,POST,DELETE"
+
+  datasource:
+    db-kind: postgresql
+    username: quarkus
+    password: quarkus
+    reactive:
+      url: postgresql://localhost:5505/quarkus_pgclient
+
+  hibernate-orm:
+    log:
+      sql: true
+    database:
+      generation: drop-and-create
+
+#  log:
+#    level: INFO
